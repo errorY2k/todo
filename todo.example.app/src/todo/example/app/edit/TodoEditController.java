@@ -27,9 +27,4 @@ public class TodoEditController {
 		dueDate.valueProperty().bindBidirectional(copy.dueDateProperty());
 	}
 
-//	@FXML
-//	private void handleCheckBoxAction() {
-//		System.out.println("CheckBox Action (selected: " + noDueDateCheckbox.isSelected() + ")\n");
-//	}
-
 }
