@@ -1,12 +1,17 @@
 package todo.example.app.details;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import todo.example.app.TodoConstants;
+import todo.example.app.model.Todo;
 
 public class TodoDetailsController {
 
-//	 @Inject
-//	 private ESelectionService selectionService;
+	// @Inject
+	// private ESelectionService selectionService;
 
 	@FXML
 	private Label todoTitleLabel;
@@ -15,53 +20,35 @@ public class TodoDetailsController {
 	@FXML
 	private Label dueDateLabel;
 
-//	@Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo;
+	// @Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo;
 
-//	public TodoDetailsController() {
-//	}
+	// public TodoDetailsController() {
+	// }
 
 	@FXML
 	private void initialize() {
 		reset();
-	//		selectionService.addSelectionListener((part, selection) -> {
-	//			Todo todo = (selection instanceof Todo) ? (Todo) selection : null;
-	//			System.out.println(todo);
-	//			setCurrentTodo(todo);
-	//		});
+		// selectionService.addSelectionListener((part, selection) -> {
+		// Todo todo = (selection instanceof Todo) ? (Todo) selection : null;
+		// System.out.println(todo);
+		// setCurrentTodo(todo);
+		// });
+
 	}
-	
-//	@Execute
-//	private void execute(@Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo) {
-//		if (todo != null) {
-//			todoTitleLabel.textProperty().bind(todo.titleProperty());
-//			detailsTextLabel.textProperty().bind(todo.detailsProperty());
-//			dueDateLabel.textProperty().bind(todo.dueDateProperty().asString());
-//		} else {
+
+	@Inject
+	private void setCurrentTodo(@Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo) {
+		if (todo != null) {
+			todoTitleLabel.textProperty().bind(todo.titleProperty());
+			detailsTextLabel.textProperty().bind(todo.detailsProperty());
+			dueDateLabel.textProperty().bind(todo.dueDateProperty().asString());
+		} else {
 //			todoTitleLabel.textProperty().unbind();
 //			detailsTextLabel.textProperty().unbind();
 //			dueDateLabel.textProperty().unbind();
 //			reset();
-//		}
-//	}
-//	
-//	@CanExecute
-//		public boolean canExecute(@Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo) {
-//		return todo != null;
-//	}
-	
-//	@Inject
-//	private void setCurrentTodo(@Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo) {
-//		if (todo != null) {
-//			todoTitleLabel.textProperty().bind(todo.titleProperty());
-//			detailsTextLabel.textProperty().bind(todo.detailsProperty());
-//			dueDateLabel.textProperty().bind(todo.dueDateProperty().asString());
-//		} else {
-//			todoTitleLabel.textProperty().unbind();
-//			detailsTextLabel.textProperty().unbind();
-//			dueDateLabel.textProperty().unbind();
-//			reset();
-//		}
-//	}
+		}
+	}
 
 	private void reset() {
 		todoTitleLabel.setText("Select");

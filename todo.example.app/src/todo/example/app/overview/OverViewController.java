@@ -28,12 +28,11 @@ public class OverViewController {
 
 	@FXML
 	private void initialize() {
-		
+
 		todoTitleColumn.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
 		todoTable.setItems(data.getTodoList());
 
 		selectedTodo.bind(todoTable.getSelectionModel().selectedItemProperty());
-		
-	}
 
+	}
 }
