@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-	id="todo.example.app.feature"
-	label="todo_app Application Feature"
-	version="1.0.0.qualifier"
-	provider-name="${BundleProject_bundleVendor}"
-	>
-		<description url="http://www.efxclipse.org">
-			TODO FILL WITH CONTENT
-		</description>
+      id="todo.example.app.feature"
+      label="todo_app Application Feature"
+      version="1.0.0.qualifier"
+      provider-name="${BundleProject_bundleVendor}">
 
-		<copyright url="http://www.efxclipse.org">
-			TODO FILL WITH CONTENT
-		</copyright>
+   <description url="http://www.efxclipse.org">
+      TODO FILL WITH CONTENT
+   </description>
 
-		<license url="http://www.efxclipse.org">
-			TODO FILL WITH CONTENT
-		</license>
+   <copyright url="http://www.efxclipse.org">
+      TODO FILL WITH CONTENT
+   </copyright>
 
-   		<plugin id="todo.example.app" install-size="0" version="0.0.0" unpack="false" />
+   <license url="http://www.efxclipse.org">
+      TODO FILL WITH CONTENT
+   </license>
 
+   <plugin
+         id="todo.example.app"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="todo.example.app.datasource"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
