@@ -1,7 +1,12 @@
 package todo.example.app.details;
 
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.eclipse.fx.core.Subscription;
+import org.eclipse.fx.core.di.ContextBoundValue;
+import org.eclipse.fx.core.di.ContextValue;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,8 +15,8 @@ import todo.example.app.model.Todo;
 
 public class TodoDetailsController {
 
-	// @Inject
-	// private ESelectionService selectionService;
+//	 @Inject
+//	 private ESelectionService selectionService;
 
 	@FXML
 	private Label todoTitleLabel;
@@ -19,8 +24,12 @@ public class TodoDetailsController {
 	private Label detailsTextLabel;
 	@FXML
 	private Label dueDateLabel;
-
-	// @Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo;
+	
+	@Inject
+	@ContextValue(value = TodoConstants.SELECTED_TODO_ITEM)
+	ContextBoundValue<Todo> selectedTodo;
+	
+	private Subscription subscribeOnValueChange;
 
 	// public TodoDetailsController() {
 	// }
@@ -28,29 +37,29 @@ public class TodoDetailsController {
 	@FXML
 	private void initialize() {
 		reset();
-		// selectionService.addSelectionListener((part, selection) -> {
-		// Todo todo = (selection instanceof Todo) ? (Todo) selection : null;
-		// System.out.println(todo);
-		// setCurrentTodo(todo);
-		// });
-
+		subscribeOnValueChange = selectedTodo.subscribeOnValueChange(todo -> setCurrentTodo(todo));
+	}
+	
+	@PreDestroy
+	void dispose() {
+		subscribeOnValueChange.dispose();
 	}
 
-	@Inject
+//	@Inject
 	private void setCurrentTodo(@Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo) {
 		if (todo != null) {
 			todoTitleLabel.textProperty().bind(todo.titleProperty());
 			detailsTextLabel.textProperty().bind(todo.detailsProperty());
 			dueDateLabel.textProperty().bind(todo.dueDateProperty().asString());
 		} else {
-//			todoTitleLabel.textProperty().unbind();
-//			detailsTextLabel.textProperty().unbind();
-//			dueDateLabel.textProperty().unbind();
-//			reset();
+			reset();
 		}
 	}
 
 	private void reset() {
+		todoTitleLabel.textProperty().unbind();
+		detailsTextLabel.textProperty().unbind();
+		dueDateLabel.textProperty().unbind();
 		todoTitleLabel.setText("Select");
 		dueDateLabel.setText("an Item");
 		detailsTextLabel.setText("to display");
