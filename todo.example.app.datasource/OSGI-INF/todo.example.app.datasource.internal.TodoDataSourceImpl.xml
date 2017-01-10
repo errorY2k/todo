@@ -3,5 +3,6 @@
    <service>
       <provide interface="todo.example.app.datasource.TodoDataSource"/>
    </service>
+   <reference bind="bindEjbLookupService" cardinality="1..1" interface="todo.example.app.ejblookup.EjbLookupService" name="EjbLookupService" policy="static" unbind="unbindEjbLookupService"/>
    <implementation class="todo.example.app.datasource.internal.TodoDataSourceImpl"/>
 </scr:component>

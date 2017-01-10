@@ -11,12 +11,12 @@ public class TodoEditService extends Service<Void> {
 	
 	@Inject private TodoDataSource datasource;
 
-	private Todo updateTodo = null;
+//	private Todo updateTodo = null;
 	private Todo editTodo = new Todo();
 	private boolean updateMode = false;
 
 	public void setUpdateTodo(Todo todo) {
-		this.updateTodo = todo;
+//		this.updateTodo = todo;
 		editTodo = todo.copy();
 		updateMode  = true;
 	}
@@ -38,7 +38,7 @@ public class TodoEditService extends Service<Void> {
 	
 	private void updateTodo(){
 		System.out.println("update! ");
-		datasource.update(updateTodo, editTodo);
+		datasource.update(editTodo);
 	}
 	
 	private void saveNewTodo() {

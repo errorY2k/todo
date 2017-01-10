@@ -15,9 +15,6 @@ import todo.example.app.model.Todo;
 
 public class TodoDetailsController {
 
-//	 @Inject
-//	 private ESelectionService selectionService;
-
 	@FXML
 	private Label todoTitleLabel;
 	@FXML
@@ -30,9 +27,6 @@ public class TodoDetailsController {
 	ContextBoundValue<Todo> selectedTodo;
 	
 	private Subscription subscribeOnValueChange;
-
-	// public TodoDetailsController() {
-	// }
 
 	@FXML
 	private void initialize() {

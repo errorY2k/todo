@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Datasource
-Bundle-SymbolicName: todo.example.app.datasource;singleton:=true
+Bundle-Name: Lookup Service
+Bundle-SymbolicName: todo.example.app.ejblookup;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: javax.inject;version="1.0.0",
@@ -10,9 +10,9 @@ Import-Package: javax.inject;version="1.0.0",
  org.osgi.framework;version="1.3.0",
  org.osgi.service.component.annotations;version="1.2.0";resolution:=optional,
  org.osgi.util.tracker;version="1.3.1"
-Export-Package: todo.example.app.datasource,
- todo.example.app.model
+Export-Package: todo.example.app.ejblookup
 Bundle-ActivationPolicy: lazy
-Service-Component: OSGI-INF/todo.example.app.datasource.internal.TodoDataSourceImpl.xml
-Require-Bundle: todo.example.app.persistence.service;bundle-version="1.0.0",
- todo.example.app.ejblookup;bundle-version="1.0.0"
+Require-Bundle: todo.example.app.persistence.service;bundle-version="1.0.0"
+Service-Component: OSGI-INF/todo.example.app.ejblookup.internal.EjbLookupServiceImpl.xml
+Bundle-ClassPath: lib/jboss-client.jar,
+ .

@@ -18,6 +18,7 @@ public class DeleteHandler {
 	@Execute
 	public void execute(@Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo) {
 		if(todo != null){
+			data.deleteTodo(todo);
 			data.getTodoList().remove(todo);
 		}
 	}
