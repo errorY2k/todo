@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="todo.example.app.datasource/src"/>
+	<classpathentry kind="src" path="todo.example.app.ejblookup/src"/>
+	<classpathentry kind="src" path="todo.example.app.persistence.service/src"/>
+	<classpathentry kind="src" path="todo.example.app/src"/>
+	<classpathentry kind="lib" path="todo.example.app.ejblookup/lib/jboss-client.jar"/>
+	<classpathentry kind="lib" path="todo.example.app.releng/org.eclipse.fx.ide.ant.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

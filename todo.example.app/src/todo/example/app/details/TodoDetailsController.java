@@ -39,7 +39,6 @@ public class TodoDetailsController {
 		subscribeOnValueChange.dispose();
 	}
 
-//	@Inject
 	private void setCurrentTodo(@Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo) {
 		if (todo != null) {
 			todoTitleLabel.textProperty().bind(todo.titleProperty());

@@ -95,6 +95,7 @@ public class TodoDataSourceImpl implements TodoDataSource {
 		
 		// Use todoService to save data und refresh UI after success
 		Platform.runLater(() -> {
+			System.out.println("(DS) save new");
 			todoList.add(todo);
 		});
 	}
@@ -102,11 +103,12 @@ public class TodoDataSourceImpl implements TodoDataSource {
 	@Override
 	public void deleteTodo(Todo _todo) {
 		TodoService todoService = ejbLookupService.lookup(TodoService.class);
-//		Date dueDate = Date.valueOf(_todo.getDueDate());
 		TodoEntity todo = todoService.find(_todo.getId());
 		todoService.delete(todo);
+		
+		int i = findTodoInList(_todo);
 		Platform.runLater(() -> {
-			todoList.remove(todo);
+			todoList.remove(i);
 		});
 	}
 
