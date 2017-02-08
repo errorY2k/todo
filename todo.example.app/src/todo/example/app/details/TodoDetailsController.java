@@ -15,15 +15,11 @@ import todo.example.app.model.Todo;
 
 public class TodoDetailsController {
 
-	@FXML
-	private Label todoTitleLabel;
-	@FXML
-	private Label detailsTextLabel;
-	@FXML
-	private Label dueDateLabel;
+	@FXML private Label todoTitleLabel;
+	@FXML private Label detailsTextLabel;
+	@FXML private Label dueDateLabel;
 	
-	@Inject
-	@ContextValue(value = TodoConstants.SELECTED_TODO_ITEM)
+	@Inject @ContextValue(value = TodoConstants.SELECTED_TODO_ITEM)
 	ContextBoundValue<Todo> selectedTodo;
 	
 	private Subscription subscribeOnValueChange;

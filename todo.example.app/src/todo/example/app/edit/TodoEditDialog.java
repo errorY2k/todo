@@ -16,19 +16,6 @@ import todo.example.app.model.Todo;
 
 public class TodoEditDialog extends Dialog<Todo> {
 
-	// @Inject @LocalInstance FXMLLoader loader;
-
-	// @Inject
-	// public TodoEditDialog(@LocalInstance FXMLLoader loader) {
-	// loader.setLocation(getClass().getResource("TodoEditView.fxml"));
-	// try {
-	// getDialogPane().setContent((Node)loader.load());
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// init();
-	// }
-	
 	@Inject private TodoEditService todoEditService;
 
 	@PostConstruct

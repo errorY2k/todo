@@ -16,7 +16,6 @@ public class TodoEditService extends Service<Void> {
 	private boolean updateMode = false;
 
 	public void setUpdateTodo(Todo todo) {
-//		this.updateTodo = todo;
 		editTodo = todo.copy();
 		updateMode  = true;
 	}
@@ -42,6 +41,7 @@ public class TodoEditService extends Service<Void> {
 	}
 	
 	private void saveNewTodo() {
+		System.out.println("new todo! " + editTodo);
 		datasource.saveNewTodo(editTodo);
 	}
 	

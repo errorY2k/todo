@@ -55,25 +55,6 @@ public class TodoDataSourceImpl implements TodoDataSource {
 		return todoList;
 	}
 
-	@Override
-	public void update(Todo _changedTodo) {
-
-		TodoService todoService = ejbLookupService.lookup(TodoService.class);
-		TodoEntity updateTodo = todoService.find(_changedTodo.getId());
-
-		updateTodoEntity(updateTodo, _changedTodo);
-		
-		TodoEntity _tmp = todoService.update(updateTodo);
-		
-		int i = findTodoInList(_changedTodo);
-		Todo newTodo = new Todo(_tmp.getId(), _tmp.getTitle(), _tmp.getDetails(), _tmp.getDueDate().toLocalDate());
-		
-		// Use todoService to save data und refresh UI after success
-		Platform.runLater(() -> {
-			todoList.set(i, newTodo);
-		});
-	}
-
 	private int findTodoInList(Todo _changedTodo) {
 		for (Todo todo : todoList) {
 			if(todo.getId() == _changedTodo.getId()){
@@ -81,23 +62,6 @@ public class TodoDataSourceImpl implements TodoDataSource {
 			}
 		}
 		return -1;
-	}
-
-	@Override
-	public void saveNewTodo(Todo todo) {
-		TodoService todoService = ejbLookupService.lookup(TodoService.class);
-		Date dueDate = Date.valueOf(todo.getDueDate());
-		TodoEntity newTodo = new TodoEntity(todo.getTitle(), todo.getDetails(), dueDate);
-		
-		TodoEntity _tmp = todoService.saveNew(newTodo);
-		
-		updateTodo(todo, _tmp);
-		
-		// Use todoService to save data und refresh UI after success
-		Platform.runLater(() -> {
-			System.out.println("(DS) save new");
-			todoList.add(todo);
-		});
 	}
 	
 	@Override
@@ -112,16 +76,52 @@ public class TodoDataSourceImpl implements TodoDataSource {
 		});
 	}
 
-	private void updateTodo(Todo updateTodo, TodoEntity changeTodo) {
-		updateTodo.setId(changeTodo.getId());
-		updateTodo.setTitle(changeTodo.getTitle());
-		updateTodo.setDetails(changeTodo.getDetails());
-		updateTodo.setDueDate(changeTodo.getDueDate().toLocalDate());
+	@Override
+	public void update(Todo _changedTodo) {
+		TodoService todoService = ejbLookupService.lookup(TodoService.class);
+
+		TodoEntity updateTodoEntity = todoService.find(_changedTodo.getId());
+		
+		copyElementToEntity(updateTodoEntity, _changedTodo);
+		
+		TodoEntity _tmpEntity = todoService.update(updateTodoEntity);
+		
+		int i = findTodoInList(_changedTodo);
+		Todo updatedTodoElement = new Todo(_tmpEntity.getId(), _tmpEntity.getTitle(), _tmpEntity.getDetails(), _tmpEntity.getDueDate().toLocalDate());
+		
+		// Use todoService to save data und refresh UI after success
+		Platform.runLater(() -> {
+			todoList.set(i, updatedTodoElement);
+		});
+	}
+
+	@Override
+	public void saveNewTodo(Todo newTodoElement) {
+		TodoService todoService = ejbLookupService.lookup(TodoService.class);
+		Date dueDate = Date.valueOf(newTodoElement.getDueDate());
+		TodoEntity newTodoEntity = new TodoEntity(newTodoElement.getTitle(), newTodoElement.getDetails(), dueDate);
+		
+		TodoEntity _tmpEntity = todoService.saveNew(newTodoEntity);
+		
+		copyEntityToElement(newTodoElement, _tmpEntity);
+		
+		// Use todoService to save data und refresh UI after success
+		Platform.runLater(() -> {
+			System.out.println("(DS) save new");
+			todoList.add(newTodoElement);
+		});
+	}
+
+	private void copyEntityToElement(Todo todoElement, TodoEntity todoEntity) {
+		todoElement.setId(todoEntity.getId());
+		todoElement.setTitle(todoEntity.getTitle());
+		todoElement.setDetails(todoEntity.getDetails());
+		todoElement.setDueDate(todoEntity.getDueDate().toLocalDate());
 	}
 	
-	private void updateTodoEntity(TodoEntity updateTodo, Todo changedTodo) {
-		updateTodo.setTitle(changedTodo.getTitle());
-		updateTodo.setDetails(changedTodo.getDetails());
-		updateTodo.setDueDate(Date.valueOf(changedTodo.getDueDate()));
+	private void copyElementToEntity(TodoEntity todoEntity, Todo changedTodo) {
+		todoEntity.setTitle(changedTodo.getTitle());
+		todoEntity.setDetails(changedTodo.getDetails());
+		todoEntity.setDueDate(Date.valueOf(changedTodo.getDueDate()));
 	}
 }
