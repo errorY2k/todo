@@ -1,7 +1,6 @@
  
 package todo.example.app.handler;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.e4.core.contexts.ContextInjectionFactory;
@@ -10,13 +9,10 @@ import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 
 import todo.example.app.TodoConstants;
-import todo.example.app.datasource.TodoDataSource;
+import todo.example.app.datasource.local.model.Todo;
 import todo.example.app.delete.TodoDeleteService;
-import todo.example.app.model.Todo;
 
 public class DeleteHandler {
-	
-	@Inject	private TodoDataSource data;
 	
 	@Execute
 	public void execute(IEclipseContext context, @Named(TodoConstants.SELECTED_TODO_ITEM) Todo todo) {

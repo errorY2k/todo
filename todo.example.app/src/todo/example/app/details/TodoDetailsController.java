@@ -11,7 +11,7 @@ import org.eclipse.fx.core.di.ContextValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import todo.example.app.TodoConstants;
-import todo.example.app.model.Todo;
+import todo.example.app.datasource.local.model.Todo;
 
 public class TodoDetailsController {
 

@@ -9,8 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import todo.example.app.TodoConstants;
-import todo.example.app.datasource.TodoDataSource;
-import todo.example.app.model.Todo;
+import todo.example.app.datasource.local.TodoDataSource;
+import todo.example.app.datasource.local.model.Todo;
 
 public class OverViewController {
 
@@ -23,8 +23,8 @@ public class OverViewController {
 	@ContextValue(value = TodoConstants.SELECTED_TODO_ITEM)
 	Property<Todo> selectedTodo;
 
-	@Inject
-	private TodoDataSource data;
+//	@Inject
+	private TodoDataSource data = new TodoDataSource();
 
 	@FXML
 	private void initialize() {

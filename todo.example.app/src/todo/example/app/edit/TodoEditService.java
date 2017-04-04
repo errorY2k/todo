@@ -1,15 +1,13 @@
 package todo.example.app.edit;
 
-import javax.inject.Inject;
-
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import todo.example.app.datasource.TodoDataSource;
-import todo.example.app.model.Todo;
+import todo.example.app.datasource.local.TodoDataSource;
+import todo.example.app.datasource.local.model.Todo;
 
 public class TodoEditService extends Service<Void> {
 	
-	@Inject private TodoDataSource datasource;
+	private TodoDataSource datasource = new TodoDataSource();
 
 //	private Todo updateTodo = null;
 	private Todo editTodo = new Todo();

@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import todo.example.app.model.Todo;
+import todo.example.app.datasource.local.model.Todo;
 
 public class TodoEditController {
 

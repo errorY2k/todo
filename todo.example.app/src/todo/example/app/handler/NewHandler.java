@@ -9,9 +9,9 @@ import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 
 import todo.example.app.TodoConstants;
+import todo.example.app.datasource.local.model.Todo;
 import todo.example.app.edit.TodoEditDialog;
 import todo.example.app.edit.TodoEditService;
-import todo.example.app.model.Todo;
 
 public class NewHandler {
 	

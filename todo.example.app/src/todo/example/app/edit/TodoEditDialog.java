@@ -12,7 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
-import todo.example.app.model.Todo;
+import todo.example.app.datasource.local.model.Todo;
 
 public class TodoEditDialog extends Dialog<Todo> {
 
