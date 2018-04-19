@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="test.internal.TestOSGI">
+   <service>
+      <provide interface="test.ITestOSGI"/>
+   </service>
+   <implementation class="test.internal.TestOSGI"/>
+</scr:component>

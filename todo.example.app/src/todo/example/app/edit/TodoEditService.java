@@ -1,7 +1,10 @@
 package todo.example.app.edit;
 
+import javax.inject.Inject;
+
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import test.ITestOSGI;
 import todo.example.app.datasource.local.TodoDataSource;
 import todo.example.app.datasource.local.model.Todo;
 
@@ -13,6 +16,8 @@ public class TodoEditService extends Service<Void> {
 	private Todo editTodo = new Todo();
 	private boolean updateMode = false;
 
+	@Inject private ITestOSGI test;
+	
 	public void setUpdateTodo(Todo todo) {
 		editTodo = todo.copy();
 		updateMode  = true;
